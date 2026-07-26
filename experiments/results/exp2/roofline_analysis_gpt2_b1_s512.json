@@ -1,0 +1,64 @@
+{
+  "model": "gpt2",
+  "batch_size": 1,
+  "seq_len": 512,
+  "per_component": {
+    "attention": {
+      "flops": 38654705664,
+      "traffic_bytes": 509607936,
+      "arithmetic_intensity": 75.85185185185185,
+      "predicted_time_s": 0.011608019718918918,
+      "measured_time_s": 0.019262980242880683,
+      "classification": "compute_bound",
+      "measured_over_predicted": 1.659454472797423,
+      "prediction_error_pct": 65.9454472797423
+    },
+    "mlp": {
+      "flops": 58133053440,
+      "traffic_bytes": 339738624,
+      "arithmetic_intensity": 171.11111111111111,
+      "predicted_time_s": 0.017457373405405405,
+      "measured_time_s": 0.033689768014786146,
+      "classification": "compute_bound",
+      "measured_over_predicted": 1.9298302919014514,
+      "prediction_error_pct": 92.98302919014513
+    },
+    "layernorm": {
+      "flops": 66060288,
+      "traffic_bytes": 113246208,
+      "arithmetic_intensity": 0.5833333333333334,
+      "predicted_time_s": 0.0004718592,
+      "measured_time_s": 0.001619634305825457,
+      "classification": "overhead_sensitive",
+      "measured_over_predicted": 3.432452532080453,
+      "prediction_error_pct": 243.24525320804534
+    },
+    "embedding": {
+      "flops": 0,
+      "traffic_bytes": 4718592,
+      "arithmetic_intensity": 0.0,
+      "predicted_time_s": 1.96608e-05,
+      "measured_time_s": 0.00013176656987828512,
+      "classification": "overhead_sensitive",
+      "measured_over_predicted": 6.70199431753973,
+      "prediction_error_pct": 570.1994317539729
+    },
+    "lm_head": {
+      "flops": 39523713024,
+      "traffic_bytes": 258888704,
+      "arithmetic_intensity": 152.66681169681317,
+      "predicted_time_s": 0.01186898289009009,
+      "measured_time_s": 0.011882008398727825,
+      "classification": "compute_bound",
+      "measured_over_predicted": 1.0010974410156586,
+      "prediction_error_pct": 0.10974410156585318
+    }
+  },
+  "sum_predicted_s": 0.04142589601441441,
+  "sum_measured_s": 0.0665861575320984,
+  "whole_measured_s": 0.06807756249327213,
+  "naive_predicted_s": 0.040954213938738736,
+  "roofline_improvement": 0.9886138352804354,
+  "roofline_error": 1.6433576347892171,
+  "naive_error": 1.6622846819891548
+}

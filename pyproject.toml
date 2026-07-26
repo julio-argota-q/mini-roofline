@@ -1,0 +1,27 @@
+[project]
+name = "miniroof-line"
+version = "0.1.0"
+description = "Cost model for GPT-2"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fvcore>=0.1.5.post20221221",
+    "matplotlib>=3.11.0",
+    "numpy>=2.5.1",
+    "pandas>=3.0.3",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "torch>=2.13.0",
+    "transformers>=5.14.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/miniroofline"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
