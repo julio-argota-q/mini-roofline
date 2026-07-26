@@ -1,5 +1,5 @@
 [project]
-name = "miniroof-line"
+name = "mini-roofline"
 version = "0.1.0"
 description = "Cost model for GPT-2"
 readme = "README.md"
