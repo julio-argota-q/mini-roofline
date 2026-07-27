@@ -12,7 +12,7 @@ MiniRoofline is a Python package and set of four self-contained experiments that
 
 Julio Argota — mathematics PhD, physics MSc, computer science BSc, nine years as a software engineer. This project is my transition into machine learning research.
 
-[LinkedIn](https://www.linkedin.com/in/julio-narciso-argota-quiroz-a6167824/) · [Website](#)
+[LinkedIn](https://www.linkedin.com/in/julio-narciso-argota-quiroz-a6167824/) · [Github](https://github.com/julio-argota-q/)
 
 ## Key findings
 
@@ -59,7 +59,8 @@ git clone https://github.com/<you>/mini-roofline.git
 cd mini-roofline
 uv sync          # install
 make test        # verify install
-make f_peak      # sanity check
+make f_peak      # run flops peak benchmark
+make m_peak      # run memory bandwith benchmark
 make exp1        # run experiment 1
 make exp2        # run experiment 2
 make exp3        # run experiment 3 
@@ -101,7 +102,7 @@ on an M4 Pro.
 
 ## Read next
 
-- [`report.pdf`](./report.pdf) — full writeup with methodology, results, and discussion
+- [`report.pdf`](docs/report.md) — full writeup with methodology, results, and discussion
 - [`experiments/`](./experiments/) — four self-contained experiment scripts
 
 ## License
