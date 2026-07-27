@@ -102,7 +102,7 @@ on an M4 Pro.
 
 ## Read next
 
-- [`report.pdf`](docs/report.md) — full writeup with methodology, results, and discussion
+- [`report.md`](docs/report.md) — full writeup with methodology, results, and discussion
 - [`experiments/`](./experiments/) — four self-contained experiment scripts
 
 ## License
