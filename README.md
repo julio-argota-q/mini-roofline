@@ -1,6 +1,6 @@
 # MiniRoofline
 
-*A first-principles cost model for transformer inference on CPU, validated three ways, showing why standard roofline predictions miss by 1.4–7× on Apple M4 Pro.*
+*A first-principles cost model for transformer inference on CPU, validated three ways, showing why standard roofline predictions miss by 1.7–7.9× on Apple M4 Pro.*
 
 ---
 
@@ -82,8 +82,10 @@ mini-roofline/
 ├── notebooks/                          NumPy reference implementation + figure generation
 ├── tests/                              Unit tests (matmul FLOPs, roofline classification)
 ├── figures/                            Four figures as PDF and PNG
-├── report.md                           Full report of findings
-└── README.md                           This file
+├── docs/
+│   ├── report.md                       Full report of findings
+│   └── research_log.md                 Session-by-session log with 18 findings
+├── README.md                           This file
 ```
 
 ## Quickstart
@@ -138,7 +140,8 @@ All numbers above are reproduced by running make exp1 exp3 on Apple M4 Pro. Actu
 
 ## Read next
 
-- [`report.md`](docs/report.md) — full writeup with methodology, results, and discussion
+- [`docs/report.md`](docs/report.md) — full writeup with methodology, results, and discussion
+- [`docs/research_log.md`](docs/research_log.md) — 18 numbered findings with derivations and supporting data
 - [`experiments/`](./experiments/) — four self-contained experiment scripts
 
 ## License
