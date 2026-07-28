@@ -53,6 +53,23 @@ The cost model is validated three independent ways:
 
 See `notebooks/verify_against_flops.py` for the reproducible validation harness.
 
+## Hardware constants
+
+All predictions in this repository use empirically measured, not
+spec-sheet, hardware constants:
+
+| Quantity          | Measured value   | % of spec |
+|-------------------|------------------|-----------|
+| Peak FLOP/s (fp32) | 3.33 TFLOP/s     | 72%       |
+| Memory bandwidth   | 240 GB/s         | 88%       |
+| Ridge point I*     | 13.9 FLOP/byte   | —         |
+
+Peak measurement uses a 4096² matmul with warmup + median-of-30
+protocol; memory bandwidth uses a 1 GB tensor clone with the same
+protocol. Run-to-run variance is approximately 15%, so peak values
+should be understood with an implicit uncertainty band. See
+`src/miniroofline/cost_model/hardware.py` for the measurement helpers.
+
 ## Repository structure
 
 ```

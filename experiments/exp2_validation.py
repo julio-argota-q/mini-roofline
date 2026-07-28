@@ -5,7 +5,7 @@ EXPERIMENT 2 — Per-component roofline validation
 
 RESEARCH QUESTION:
   Experiment 1 showed a systematic gap between whole-model latency and
-  the peak-throughput prediction (6.88× at S=32, 1.43× at S=512).
+  the peak-throughput prediction (7.9× at S=32, 1.7× at S=512).
   How much of that gap does the roofline model close when we predict
   per-component instead of assuming everything runs at peak?
 
@@ -26,7 +26,7 @@ HYPOTHESIS:
      of PyTorch dispatch overhead (LayerNorm gets called 2*L=24 times per pass).
   5. Aggregate roofline prediction (sum of per-component roofline bounds)
      will be within 2× of measured at S=512, better than the peak-only
-     prediction of 1.43×.
+     prediction of 1.7×.
 
 METHOD:
   Reuse the measured component times from Exp 1's JSON output (no re-run needed).
