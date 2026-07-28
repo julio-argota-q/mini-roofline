@@ -1,0 +1,88 @@
+{
+  "model": "gpt2",
+  "batch_size": 1,
+  "seq_len": 512,
+  "per_component": {
+    "attention": {
+      "measured_s": 0.019262980242880683,
+      "calibrated_predicted_s": 0.01130800467590335,
+      "error_ratio": 1.703481807354474,
+      "matmul_details": [
+        {
+          "matmul": "QKV",
+          "flops": 21743271936,
+          "peak_flops": 3533767552193.3267,
+          "peak_source": "Exp3:QKV_S512",
+          "latency_s": 0.0061530000530183315
+        },
+        {
+          "matmul": "Out",
+          "flops": 7247757312,
+          "peak_flops": 3216936661828.6733,
+          "peak_source": "Exp3:Out_S512",
+          "latency_s": 0.0022529996931552887
+        },
+        {
+          "matmul": "scores_and_weighted",
+          "flops": 9663676416,
+          "peak_flops": 3330000000000.0,
+          "peak_source": "global_peak",
+          "latency_s": 0.0029020049297297295
+        }
+      ]
+    },
+    "mlp": {
+      "measured_s": 0.033689768014786146,
+      "calibrated_predicted_s": 0.019071984104812145,
+      "error_ratio": 1.7664532347363753,
+      "matmul_details": [
+        {
+          "matmul": "FC1",
+          "flops": 28991029248,
+          "peak_flops": 3235067167666.463,
+          "peak_source": "Exp3:FC1_S512",
+          "latency_s": 0.008961492218077183
+        },
+        {
+          "matmul": "FC2",
+          "flops": 28991029248,
+          "peak_flops": 2867420257370.1123,
+          "peak_source": "Exp3:FC2_S512",
+          "latency_s": 0.010110491886734962
+        }
+      ]
+    },
+    "lm_head": {
+      "measured_s": 0.011882008398727825,
+      "calibrated_predicted_s": 0.011747917043976486,
+      "error_ratio": 1.0114140535934488,
+      "matmul_details": [
+        {
+          "matmul": "LMH",
+          "flops": 39523713024,
+          "peak_flops": 3364316659374.524,
+          "peak_source": "Exp3:LMH_S512",
+          "latency_s": 0.011747917043976486
+        }
+      ]
+    },
+    "layernorm": {
+      "measured_s": 0.001619634305825457,
+      "calibrated_predicted_s": null,
+      "matmul_details": [],
+      "note": "no matmul; overhead-sensitive category"
+    },
+    "embedding": {
+      "measured_s": 0.00013176656987828512,
+      "calibrated_predicted_s": null,
+      "matmul_details": [],
+      "note": "no matmul; overhead-sensitive category"
+    }
+  },
+  "whole_measured_s": 0.06807756249327213,
+  "naive_predicted_s": 0.040954213938738736,
+  "calibrated_predicted_s": 0.04212790582469198,
+  "naive_error_factor": 1.6622846819891548,
+  "calibrated_error_factor": 1.615973098130374,
+  "improvement_over_naive": 0.9721397999027684
+}
