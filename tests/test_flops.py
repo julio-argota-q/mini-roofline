@@ -41,7 +41,7 @@ def test_output_projection_scales_with_d_squared():
 
 
 def test_mlp_matches_16bsd_squared():
-    """MLP with d_ff = 4d costs 16 · B · S · d · (d+ 2. bcause we are counting GELU flops"""
+    """MLP with d_ff=4d and GELU costs 16·B·S·d² + 32·B·S·d = 16·B·S·d·(d+2)."""
     B, S, d = 1, 128, 768
     assert flops_mlp_layer(B, S, d) == 16 * B * S * d * (d + 2)
 

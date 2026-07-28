@@ -16,15 +16,32 @@ Julio Argota — mathematics PhD, physics MSc, computer science BSc, nine years 
 
 ## Key findings
 
-- **The standard roofline model over-predicts transformer inference throughput by 1.4–7×** on M4 Pro, with the gap shrinking monotonically as sequence length grows (S=32: 6.88×; S=128: 2.41×; S=512: 1.43×).
+- **The standard roofline model over-predicts transformer inference throughput
+  by 1.7–7.9×** on M4 Pro, with the gap shrinking monotonically as sequence
+  length grows (S=32: 7.9×; S=128: 2.8×; S=512: 1.7×). At the machine's
+  measured peak of 3.33 TFLOP/s and 240 GB/s memory bandwidth (ridge point
+  I* ≈ 13.9 FLOP/byte), the naive roofline predicts latencies far below
+  what GPT-2 actually achieves.
 
-- **Apple's AMX unit saturates at M ≈ 512** in fp32 matmuls, rising from 522 GFLOP/s at M=8 to 3205 GFLOP/s at M=512, then plateauing. GPT-2 inference at typical sequence lengths sits below this knee.
+- **Apple's AMX unit saturates at M ≈ 512** for fp32 matmuls. Holding
+  K=768 and N=3072 fixed (the MLP FC1 shape), achieved throughput rises
+  from 615 GFLOP/s at M=8 to 3238 GFLOP/s at M=512, then plateaus. GPT-2
+  inference at typical sequence lengths sits below this knee.
 
-- **Prefill and decode achieve 178× different throughput** on the same hardware with identical per-token FLOPs — the clearest case of the compute-bound / memory-bound divide in transformer inference.
+- **Prefill and decode achieve dramatically different throughput** on the
+  same hardware with identical per-token FLOPs — the clearest case of the
+  compute-bound / memory-bound divide in transformer inference.
 
-- **Per-shape roofline calibration predicts throughput above what is achievable.** Applying per-shape peaks from isolated microbenchmarks yields a latency prediction 13% below measured at S=512 — the roofline model becomes too fast, not too slow. In-workload throughput is systematically suppressed relative to isolated microbenchmarks.
+- **Per-shape roofline calibration predicts throughput above what is
+  achievable.** Applying per-shape peaks from isolated microbenchmarks
+  yields a latency prediction below measured at long sequences — the
+  roofline model becomes too fast, not too slow. In-workload throughput
+  is systematically suppressed relative to isolated microbenchmarks.
 
-- **fvcore undercounts attention linearly with sequence length**, missing all attention-internal matmul operations. Undercount grows from 0.6% at S=32 to 7.7% at S=512, extrapolating to 25%+ at S=2048 — a real limitation for long-context inference cost estimation.
+- **fvcore undercounts attention linearly with sequence length**, missing
+  all attention-internal matmul operations. Undercount grows from 0.6%
+  at S=32 to 7.7% at S=512, extrapolating to 25%+ at S=2048 — a real
+  limitation for long-context inference cost estimation.
 
 ## Validation
 
@@ -82,6 +99,8 @@ on an M4 Pro.
 | exp2_validation | Per-component roofline classification | <1 s (reads Exp 1) | — |
 | exp3_shape_sensitivity | Matmul throughput by shape | ~2 min | Fig 2, Fig 3 |
 | exp4_calibrated_roofline | Shape-calibrated prediction | <1 s (reads Exp 1+3) | Fig 1 |
+
+All numbers above are reproduced by running make exp1 exp3 on Apple M4 Pro. Actual values may vary within ~15% between runs due to measurement noise.
 
 ## Requirements
 
